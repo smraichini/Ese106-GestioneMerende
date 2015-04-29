@@ -1,6 +1,6 @@
 package gestionemerende;
 
-import java.time.LocalDate;
+
 import java.util.Vector;
 
 public class Ordine {
@@ -9,21 +9,19 @@ public class Ordine {
 	private Classe classe;
 	private Vector<Articolo> articoli;
 	
-	public Ordine(Classe classe, LocalDate g) {
-		if(classe != null){
-				this.classe=classe;
+	public Ordine(String codice) {
+		if(codice != null){
+			if(codice.length()>0){
+				this.codice=codice;
 			}
 		    else{
-		    	throw new IllegalArgumentException("La classe deve essere presente");
+		    	throw new IllegalArgumentException("Il codice deve essere presente");
 		   	}
-		
-		if(g == null){
 			
-			throw new IllegalArgumentException("La data deve essere presente");
 		}
-		
-		this.codice=classe.getNome()+ g;
-				
+		else{
+	    	throw new IllegalArgumentException("Il codice deve essere presente");
+	   	}
 		articoli = new Vector<Articolo>();
 	}
 	
@@ -33,11 +31,11 @@ public class Ordine {
 			this.articoli.addElement(articolo);
 		}
 		else{
-			throw new IllegalArgumentException("L'articolo da aggiungere non deve essere null");
+			throw new IllegalArgumentException("a cannot be null");
 		}
 	}
 
-	public double getCostoTot(){
+	public double getCostoTotale(){
 		double costo=0;
 		for( Articolo a : this.articoli){
 			costo=a.getCostoUnitario()+costo;
@@ -56,6 +54,13 @@ public class Ordine {
 	
 	public Classe getClasse(){
 		return this.classe;
+	}
+	
+	public void setClasse(Classe classe){
+		if(classe == null){
+			throw new IllegalArgumentException("nope");
+		}
+		this.classe=classe;
 	}
 	
 	public Vector<Articolo> getArticoli(){

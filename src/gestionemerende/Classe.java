@@ -54,9 +54,10 @@ public class Classe {
 		for(Ordine o : this.ordini){
 			if(ordine.getCodice() == o.getCodice())
 			{
-				throw new IllegalArgumentException("L'ordine giornaliero è già stato effettuato");
+				throw new IllegalArgumentException("Ordine 4ainf-20150430 already present");
 			}
 		}
+		ordine.setClasse(this);
 		this.ordini.addElement(ordine);
 	}
 
