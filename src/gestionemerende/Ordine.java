@@ -39,8 +39,8 @@ public class Ordine {
 
 	public double getCostoTot(){
 		double costo=0;
-		for( double i : this.articoli.getCostoUnitario()){
-			costo = costo+i;  //DA RIVEDERE DOPO
+		for( Articolo a : this.articoli){
+			costo=a.getCostoUnitario()+costo;
 		}
 		
 		return costo;
