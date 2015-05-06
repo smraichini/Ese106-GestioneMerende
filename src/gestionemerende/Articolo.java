@@ -1,11 +1,14 @@
 package gestionemerende;
 
+import java.util.Vector;
+
 public abstract class Articolo {
 	private String codice;
 	private String descrizione;
 	private double costoUnitario;
 	private double apportoCalorico;
-
+	private Vector<ElementoOrdine> elementiOrdine;
+	
 	public Articolo(String codice, String descrizione, double costoUnitario, double apportoCalorico) {
 		
 		if(codice != null){
@@ -68,6 +71,16 @@ public abstract class Articolo {
 
 	public double getApportoCalorico() {
 		return apportoCalorico;
+	}
+	
+	public void addElementoOrdine(ElementoOrdine elementoOrdine){
+		elementiOrdine.addElement(elementoOrdine);
+		
+	}
+	
+	public int getOrdinitotali(){
+		for()
+		return nv;
 	}
 
 }
