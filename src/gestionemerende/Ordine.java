@@ -7,7 +7,7 @@ public class Ordine {
 	
 	private String codice;
 	private Classe classe;
-	private Vector<Articolo> articoli;
+	private Vector<ElementoOrdine> articoli;
 	
 	public Ordine(String codice) {
 		if(codice != null){
@@ -22,13 +22,18 @@ public class Ordine {
 		else{
 	    	throw new IllegalArgumentException("Il codice deve essere presente");
 	   	}
-		articoli = new Vector<Articolo>();
+		articoli = new Vector<ElementoOrdine>();
 	}
 	
-	public void addArticolo(Articolo articolo){
+	public void addArticolo(Articolo articolo, int quantità){
 		
 		if(articolo != null){
-			this.articoli.addElement(articolo);
+			if(quantità >= 0){
+				this.articoli.addElement(new ElementoOrdine(articolo, quantità,this));
+			}
+			else{
+				throw new IllegalArgumentException("quantità cannot be less than 0");
+			}
 		}
 		else{
 			throw new IllegalArgumentException("a cannot be null");
@@ -37,8 +42,8 @@ public class Ordine {
 
 	public double getCostoTotale(){
 		double costo=0;
-		for( Articolo a : this.articoli){
-			costo=a.getCostoUnitario()+costo;
+		for( ElementoOrdine a : this.articoli){
+			costo=a.getArticolo().getCostoUnitario()*a.getQuantità();
 		}
 		
 		return costo;
@@ -63,7 +68,7 @@ public class Ordine {
 		this.classe=classe;
 	}
 	
-	public Vector<Articolo> getArticoli(){
+	public Vector<ElementoOrdine> getArticoli(){
 		return this.articoli;
 	}
 
