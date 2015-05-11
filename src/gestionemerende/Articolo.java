@@ -79,7 +79,10 @@ public abstract class Articolo {
 	}
 	
 	public int getOrdinitotali(){
-		for()
+		int nv = 0;
+		for(ElementoOrdine elemento : elementiOrdine) {
+			nv += elemento.getQuantità();
+		}
 		return nv;
 	}
 
